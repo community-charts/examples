@@ -1,0 +1,23 @@
+backendStore:
+  postgres:
+    enabled: true
+    host: "postgres-service"
+    port: 5432
+    database: "postgres"
+    user: "postgres"
+    password: "postgres"
+
+artifactRoot:
+  azureBlob:
+    enabled: true
+    container: "mlflow"
+    storageAccount: "devstoreaccount1"
+    connectionString: "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://azurite-service:10000/devstoreaccount1;QueueEndpoint=http://azurite-service:10001/devstoreaccount1"
+
+ingress:
+  enabled: true
+  hosts:
+    - host: mlflow.MINIKUBE_IP.nip.io
+      paths:
+        - path: /
+          pathType: ImplementationSpecific

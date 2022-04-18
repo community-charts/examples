@@ -1,0 +1,25 @@
+backendStore:
+  postgres:
+    enabled: true
+    host: "postgres-service"
+    port: 5432
+    database: "postgres"
+    user: "postgres"
+    password: "postgres"
+
+artifactRoot:
+  gcs:
+    enabled: true
+    bucket: "mlflow"
+
+extraEnvVars:
+  GOOGLE_CLOUD_PROJECT: mlflow
+  STORAGE_EMULATOR_HOST: http://fake-gcs-service:4443
+
+ingress:
+  enabled: true
+  hosts:
+    - host: gcs.MINIKUBE_IP.nip.io
+      paths:
+        - path: /
+          pathType: ImplementationSpecific

@@ -1,0 +1,17 @@
+serviceMonitor:
+  enabled: true
+  namespace: monitoring
+  interval: 30s
+  telemetryPath: /metrics
+  labels:
+    release: prometheus
+  timeout: 10s
+  targetLabels: []
+
+ingress:
+  enabled: true
+  hosts:
+    - host: mlflow.MINIKUBE_IP.nip.io
+      paths:
+        - path: /
+          pathType: ImplementationSpecific

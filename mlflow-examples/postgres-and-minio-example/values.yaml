@@ -1,0 +1,26 @@
+backendStore:
+  postgres:
+    enabled: true
+    host: "postgres-service"
+    port: 5432
+    database: "postgres"
+    user: "postgres"
+    password: "postgres"
+
+artifactRoot:
+  s3:
+    enabled: true
+    bucket: "mlflow"
+    awsAccessKeyId: "minioadmin"
+    awsSecretAccessKey: "minioadmin"
+
+extraEnvVars:
+  MLFLOW_S3_ENDPOINT_URL: http://minio-service:9000
+
+ingress:
+  enabled: true
+  hosts:
+    - host: mlflow.MINIKUBE_IP.nip.io
+      paths:
+        - path: /
+          pathType: ImplementationSpecific

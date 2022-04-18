@@ -1,0 +1,7 @@
+grafana:
+  ingress:
+    enabled: true
+    hosts:
+    - grafana.MINIKUBE_IP.nip.io
+
+  adminPassword: admin
