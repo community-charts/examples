@@ -36,7 +36,7 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm repo add community-charts https://community-charts.github.io/helm-charts
 helm repo update
 
-cat prometheus-values.yaml | sed "s/MINIKUBE_IP/$(minikube ip)/" | helm install prometheus prometheus-community/kube-prometheus-stack -n monitoring --create-namespace --wait --values -
+cat prometheus-values.yaml | sed "s/MINIKUBE_IP/$(minikube ip)/" | helm install prometheus prometheus-community/kube-prometheus-stack -n monitoring --create-namespace --version 34.10.0 --wait --values -
 
 cat mlflow-values.yaml | sed "s/MINIKUBE_IP/$(minikube ip)/" | helm upgrade --install mlflow community-charts/mlflow --wait --values -
 

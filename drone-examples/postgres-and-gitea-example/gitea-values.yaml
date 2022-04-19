@@ -1,0 +1,42 @@
+replicaCount: 1
+
+ingress:
+  enabled: true
+  hosts:
+    - host: gitea.MINIKUBE_IP.nip.io
+      paths:
+        - path: /
+          pathType: Prefix
+
+persistence:
+  enabled: true
+
+gitea:
+  admin:
+    username: testuser
+    password: password
+    email: "admin@localhost"
+
+  config:
+    # https://docs.gitea.io/en-us/config-cheat-sheet/#repository-repository
+    repository:
+      DEFAULT_BRANCH: main
+
+    # https://docs.gitea.io/en-us/config-cheat-sheet/#database-database
+    database:
+      DB_TYPE: postgres
+      HOST: postgres-service.default.svc.cluster.local:5432
+      NAME: postgres
+      USER: postgres
+      # `postgres` without line ending and encoded
+      PASSWD: postgres
+
+    webhook:
+      ALLOWED_HOST_LIST: "*"
+      SKIP_TLS_VERIFY: "true"
+
+postgresql:
+  enabled: false
+
+memcached:
+  enabled: false
