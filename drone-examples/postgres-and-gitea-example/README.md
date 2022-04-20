@@ -1,4 +1,3 @@
-### Create a new OAuth2 Application
+# Postgres DB and Gitea Oauth2 Provider example
 
-Application Name `drone`
-Redirect URI `http://drone.192.168.0.201.nip.io/login`
+Please run `./run.sh` bash script. It will start a minikube and deploy a Drone CI server with Drone Kube runner. Drone CI configured to use PostgreSQL DB and Gitea Git server.
