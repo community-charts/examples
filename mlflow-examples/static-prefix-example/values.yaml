@@ -1,0 +1,10 @@
+extraArgs:
+  staticPrefix: /mlflow
+
+ingress:
+  enabled: true
+  hosts:
+    - host: MINIKUBE_IP.nip.io
+      paths:
+        - path: /mlflow
+          pathType: ImplementationSpecific
