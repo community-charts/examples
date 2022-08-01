@@ -6,5 +6,6 @@
 - [Mlflow metrics on Grafana example](prometheus-dashboard-example/README.md)
 - [Static prefix usage example](static-prefix-example/README.md)
 - [LivenessProbe and ReadinessProbe usage example](liveness-probe-and-readiness-probe-example/README.md)
+- [MLflow Tracking Server enabled with proxied artifact storage access example](proxied-artifact-storage-access-example/README.md)
 
 Please go to the corresponding folder and run `./run.sh` command.

@@ -31,8 +31,8 @@ def test_proxied_artifact_storage_access_via_api():
 
     base_url = f"http://mlflow.{minikube_ip}.nip.io"
 
-    experiment_name = "aws-cloud-experiment"
-    model_name = "test-aws-model"
+    experiment_name = "proxied-access-experiment"
+    model_name = "my-model"
     stage_name = "Staging"
     mlflow.set_tracking_uri(base_url)
     mlflow.set_experiment(experiment_name)
