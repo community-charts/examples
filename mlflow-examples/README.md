@@ -7,5 +7,6 @@
 - [Static prefix usage example](static-prefix-example/README.md)
 - [LivenessProbe and ReadinessProbe usage example](liveness-probe-and-readiness-probe-example/README.md)
 - [MLflow Tracking Server enabled with proxied artifact storage access example](proxied-artifact-storage-access-example/README.md)
+- [Bitnami Postgres DB and Bitnami Minio Backend with Mlflow Docs Sklearn Elasticnet Wine Training Example](bitnami-postgresql-and-bitnami-minio-sklearn-training-example/README.md)
 
 Please go to the corresponding folder and run `./run.sh` command.

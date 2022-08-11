@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: model-training
+  namespace: airflow
+spec:
+  restartPolicy: Never
+  containers:
+    - name: model-training
+      image: python:3.9
+      command:
+      - "/bin/sh"
+      - "-c"
+      - |
+        curl https://raw.githubusercontent.com/mlflow/mlflow/master/examples/sklearn_elasticnet_wine/train.py --output train.py
+        pip install pandas numpy sklearn mlflow
+        python train.py
+      env:
+        - name: MLFLOW_TRACKING_URI
+          value: http://mlflow.airflow.svc.cluster.local:5000

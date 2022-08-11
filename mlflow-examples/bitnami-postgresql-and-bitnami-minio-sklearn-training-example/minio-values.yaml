@@ -1,0 +1,6 @@
+mode: standalone
+auth:
+  rootUser: admin
+  rootPassword: password
+
+defaultBuckets: "mlflow"

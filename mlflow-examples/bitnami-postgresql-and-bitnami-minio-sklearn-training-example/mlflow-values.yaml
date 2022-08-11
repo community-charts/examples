@@ -1,0 +1,21 @@
+backendStore:
+  databaseMigration: true
+  databaseConnectionCheck: true
+  postgres:
+    enabled: true
+    host: mlflow-postgres-postgresql.airflow.svc.cluster.local
+    port: 5432
+    database: mlflow_db
+    user: mlflow
+    password: mlflow
+
+artifactRoot:
+  proxiedArtifactStorage: true
+  s3:
+    enabled: true
+    bucket: mlflow
+    awsAccessKeyId: admin
+    awsSecretAccessKey: password
+
+extraEnvVars:
+  MLFLOW_S3_ENDPOINT_URL: http://minio.airflow.svc.cluster.local:9000
