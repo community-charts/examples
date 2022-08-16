@@ -1,0 +1,28 @@
+backendStore:
+  databaseMigration: true
+  databaseConnectionCheck: true
+  mysql:
+    enabled: true
+    host: "mysql-service"
+    port: 3306
+    database: "mlflow"
+    user: "mlflow"
+    password: "mlflow"
+
+artifactRoot:
+  s3:
+    enabled: true
+    bucket: "mlflow"
+    awsAccessKeyId: "minioadmin"
+    awsSecretAccessKey: "minioadmin"
+
+extraEnvVars:
+  MLFLOW_S3_ENDPOINT_URL: http://minio-service:9000
+
+ingress:
+  enabled: true
+  hosts:
+    - host: mlflow.MINIKUBE_IP.nip.io
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
