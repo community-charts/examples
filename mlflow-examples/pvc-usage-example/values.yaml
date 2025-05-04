@@ -15,16 +15,7 @@ backendStore:
 
 artifactRoot:
   proxiedArtifactStorage: true
-  defaultArtifactRoot: "http://mlflow.MINIKUBE_IP.nip.io/api/2.0/mlflow-artifacts/artifacts/experiments"
-  defaultArtifactsDestination: "./data/mlartifacts"
-
-# extraArgs:
-#   backendStoreUri: sqlite:////mlflow/data/mlflow.db
-#   defaultArtifactRoot: http://mlflow.MINIKUBE_IP.nip.io/api/2.0/mlflow-artifacts/artifacts/experiments
-#   artifactsDestination: ./data/mlartifacts
-
-# extraFlags:
-#   - serveArtifacts
+  defaultArtifactsDestination: "/mlflow/data/mlartifacts"
 
 ingress:
   enabled: true
