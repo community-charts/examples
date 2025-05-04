@@ -1,0 +1,35 @@
+strategy:
+  type: Recreate
+
+extraVolumes:
+  - name: mlflow-volume
+    persistentVolumeClaim:
+      claimName: mlflow-pvc
+
+extraVolumeMounts:
+  - name: mlflow-volume
+    mountPath: /mlflow/data
+
+backendStore:
+  defaultSqlitePath: "mlflow/data/mlflow.db"
+
+artifactRoot:
+  proxiedArtifactStorage: true
+  defaultArtifactRoot: "http://mlflow.MINIKUBE_IP.nip.io/api/2.0/mlflow-artifacts/artifacts/experiments"
+  defaultArtifactsDestination: "./data/mlartifacts"
+
+# extraArgs:
+#   backendStoreUri: sqlite:////mlflow/data/mlflow.db
+#   defaultArtifactRoot: http://mlflow.MINIKUBE_IP.nip.io/api/2.0/mlflow-artifacts/artifacts/experiments
+#   artifactsDestination: ./data/mlartifacts
+
+# extraFlags:
+#   - serveArtifacts
+
+ingress:
+  enabled: true
+  hosts:
+    - host: mlflow.MINIKUBE_IP.nip.io
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
