@@ -33,10 +33,10 @@ helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo add community-charts https://community-charts.github.io/helm-charts
 helm repo update
 
-helm upgrade --install mlflow-postgres-postgresql bitnami/postgresql -n airflow -f postgresql-values.yaml --create-namespace --version 11.6.26 --wait
+helm upgrade --install mlflow-postgres-postgresql bitnami/postgresql -n mlflow -f postgresql-values.yaml --create-namespace --version 11.6.26 --wait
 
-helm upgrade --install minio -n airflow -f minio-values.yaml bitnami/minio --create-namespace --version 11.8.0 --wait
+helm upgrade --install minio -n mlflow -f minio-values.yaml bitnami/minio --create-namespace --version 11.8.0 --wait
 
-helm upgrade --install mlflow -n airflow -f mlflow-values.yaml community-charts/mlflow --version 0.5.9 --wait 
+cat mlflow-values.yaml | sed "s/MINIKUBE_IP/$(minikube ip)/" | helm upgrade --install mlflow -n mlflow community-charts/mlflow --version 1.2.0 --wait --values -
 
-kubectl delete pod model-training -n airflow --ignore-not-found=true --wait && kubectl apply -f training-pod.yaml -n airflow
+kubectl delete pod model-training -n mlflow --ignore-not-found=true --wait && kubectl apply -f training-pod.yaml -n mlflow

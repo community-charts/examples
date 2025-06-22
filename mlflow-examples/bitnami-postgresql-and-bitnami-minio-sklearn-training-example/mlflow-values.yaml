@@ -1,9 +1,20 @@
+log:
+  level: debug
+
+ingress:
+  enabled: true
+  hosts:
+    - host: mlflow.MINIKUBE_IP.nip.io
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+
 backendStore:
   databaseMigration: true
   databaseConnectionCheck: true
   postgres:
     enabled: true
-    host: mlflow-postgres-postgresql.airflow.svc.cluster.local
+    host: mlflow-postgres-postgresql.mlflow.svc.cluster.local
     port: 5432
     database: mlflow_db
     user: mlflow
@@ -17,5 +28,9 @@ artifactRoot:
     awsAccessKeyId: admin
     awsSecretAccessKey: password
 
+extraArgs:
+  workers: "4"
+  gunicornOpts: "--timeout=120"
+
 extraEnvVars:
-  MLFLOW_S3_ENDPOINT_URL: http://minio.airflow.svc.cluster.local:9000
+  MLFLOW_S3_ENDPOINT_URL: http://minio.mlflow.svc.cluster.local:9000
