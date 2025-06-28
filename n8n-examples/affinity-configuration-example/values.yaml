@@ -1,0 +1,73 @@
+log:
+  level: warn
+
+db:
+  type: postgresdb
+
+main:
+  extraEnvVars:
+    N8N_SECURE_COOKIE: "false"
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      memory: 512Mi
+
+worker:
+  mode: queue
+
+  autoscaling:
+    enabled: true
+    maxReplicas: 3
+
+  resources:
+    requests:
+      cpu: 1000m
+      memory: 250Mi
+    limits:
+      memory: 1Gi
+
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: n8n-worker
+            app.kubernetes.io/component: worker
+            app.kubernetes.io/instance: n8n
+        topologyKey: kubernetes.io/hostname
+
+webhook:
+  mode: queue
+
+  autoscaling:
+    enabled: true
+    maxReplicas: 3
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      memory: 512Mi
+
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: n8n-webhook
+            app.kubernetes.io/component: webhook
+            app.kubernetes.io/instance: n8n
+        topologyKey: kubernetes.io/hostname
+
+postgresql:
+  enabled: true
+  primary:
+    persistence:
+      enabled: false
+
+redis:
+  enabled: true
