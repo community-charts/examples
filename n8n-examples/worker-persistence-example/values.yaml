@@ -1,0 +1,48 @@
+log:
+  level: debug
+
+db:
+  type: postgresdb
+
+nodes:
+  external:
+    packages:
+      - "moment@2.29.4"
+      - "n8n-nodes-chatwoot@0.1.40"
+
+main:
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 512m
+      memory: 512Mi
+
+  extraEnvVars:
+    N8N_SECURE_COOKIE: "false"
+
+worker:
+  mode: queue
+
+  waitMainNodeReady:
+    enabled: true
+
+  persistence:
+    enabled: true
+    size: 1Gi
+    storageClass: standard
+
+ingress:
+  enabled: true
+  hosts:
+    - host: n8n.MINIKUBE_IP.nip.io
+      paths:
+        - path: /
+          pathType: Prefix
+
+postgresql:
+  enabled: true
+
+redis:
+  enabled: true
